@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is a flexible and modular web test automation framework designed to test the e-commerce website: [SauceDemo](https://www.saucedemo.com/v1/). The framework focuses on **clean separation of concerns** between:
+This is a flexible and modular web test automation framework designed to test the e-commerce website: [SauceDemo](https://www.saucedemo.com/v1/). The framework focuses on **clean separation** between:
 
 - Test Logic (TestNG test classes)
 - Page Object Model (POM)
