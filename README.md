@@ -1,4 +1,4 @@
-# Flexible Web Test Automation Framework
+# Web Test Automation Framework
 
 ## Overview
 
@@ -14,28 +14,28 @@ This design enables **future flexibility** where the Selenium WebDriver layer ca
 
 ## Architecture
 
-### 1. 🧪 `Test Classes` Package
+### 🧪 `Test Classes` Package
 
 - Contains all TestNG-based test classes
-- Tests are **data-driven** using `@DataProvider`, Parallel execution is supported.
-- These tests interact with POM classes only — keeping tests clean and focused on behavior and assertions.
+- Tests are support parallel execution.
+- These tests interact with POM classes only, keeping tests clean and focused on business behavior and assertions.
 
 ---
 
-### 2. 📦 `POM` Package
+### 📦 `POM` Package
 
 - Contains all Page Object Model (POM) classes representing the pages of the web application.
 - Each class encapsulates:
-  - Page-specific element locators
+  - Page-specific element locators (stored as String, **not** By, to avoid Selenium dependency)
   - Page interactions
   - Navigation logic
 - This separation allows you to write high-level business flows in tests **without directly using Selenium commands**.
 
 ---
 
-### 3. 🛠️ `Actions` Package
+### 🛠️ `Actions` Package
 
-The Actions package acts as a custom-built wrapper around Selenium WebDriver. This is where **all direct interactions with Selenium are centralized**, allowing the rest of the framework (Page Objects and Tests) to remain **completely decoupled** from Selenium APIs. This design makes it easy to switch to another automation library (like Playwright or Cypress) without touching your POMs or test cases.
+The Actions package acts as a custom-built wrapper around Selenium WebDriver. This is where **all direct interactions with Selenium are centralized**, allowing the rest of the framework (Page Objects and Tests) to remain **fully decoupled** from Selenium APIs. This design makes it easy to switch to another automation library (like Playwright or Cypress) without touching your POMs or test cases.
 
 
  `SeleniumBrowserActions.java` & `SeleniumWebUIActions.java` classes isolate **Selenium-specific logic** from your test and POM layers.
@@ -49,6 +49,17 @@ The Actions package acts as a custom-built wrapper around Selenium WebDriver. Th
 
 The key benefit of this structure is **decoupling your business logic (test scenarios and page interactions)** from the **underlying automation engine (Selenium)**.
 
-If you ever decide to migrate to another automation tool (e.g., Playwright, Cypress), only the `SeleniumActions` layer will need to be replaced — leaving your POMs and tests **completely untouched**.
+If you ever decide to migrate to another automation tool (e.g., Playwright, Cypress), only the `Actions` layer (`SeleniumBrowserActions` and `SeleniumWebUIActions`) will need to be replaced
+ — leaving your POMs and tests **completely untouched**.
 
 This ensures less code refactor, reusability and easier testing and maintenance.
+
+---
+
+## 🚀 Future Improvements
+
+- Integrate advanced reporting (Allure or ExtentReports)
+- Enable external test data sources (Excel, JSON, etc.)
+- Add CI/CD integration (e.g., GitHub Actions, Jenkins)
+- Improve logging and error tracking
+- Add support for cross-browser and mobile testing
