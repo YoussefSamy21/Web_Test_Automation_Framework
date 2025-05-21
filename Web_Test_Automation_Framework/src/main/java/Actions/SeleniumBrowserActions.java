@@ -29,7 +29,7 @@ public class SeleniumBrowserActions
             case CHROME :
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("--incognito");
-                driversHashMap.put(key , new ChromeDriver());
+                driversHashMap.put(key , new ChromeDriver(options));
                 break;
             case FIREFOX: driversHashMap.put(key, new FirefoxDriver());
             break;
