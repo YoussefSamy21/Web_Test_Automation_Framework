@@ -17,7 +17,7 @@ This design enables **future flexibility** where the Selenium WebDriver layer ca
 ### 🧪 `Test Classes` Package
 
 - Contains all TestNG-based test classes
-- Tests are support parallel execution.
+- Tests support parallel execution.
 - These tests interact with POM classes only, keeping tests clean and focused on business behavior and assertions.
 
 ---
